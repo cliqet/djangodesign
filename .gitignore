@@ -1,0 +1,11 @@
+*.sqlite3
+*.pyc
+.DS_Store
+.idea
+README.md
+local_settings.py
+user_profile_pics/
+user_profile_pics/*
+env/
+env/*
+secret.py

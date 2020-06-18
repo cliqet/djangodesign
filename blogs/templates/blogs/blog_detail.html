@@ -1,0 +1,22 @@
+{% extends 'blogs/base.html' %}
+
+{% block categorydiv %}
+    <div class="nav-scroller py-1 mb-2">
+        <a href="{{ request.META.HTTP_REFERER }}">Back</a>
+     </div>
+{% endblock categorydiv %}
+
+{% block content %}
+    <div class="mb-2">
+       <div class="card">
+          <div class="col p-4 d-flex flex-column position-static">
+             <strong class="d-inline-block mb-2 text-primary">{{ blog.category }}</strong>
+             <h3 class="mb-0">{{ blog.title }}</h3>
+             <div class="mb-1 text-muted">by
+               <a href="#" class="stretched-link">{{ blog.author }}</a>
+               on Nov 12</div>
+             <p class="card-text mb-auto">{{ blog.content }}</p>
+          </div>
+       </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "blogs/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block categorydiv %}
+    <div class="nav-scroller py-1 mb-2">
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn-block">Back</a>
+     </div>
+{% endblock categorydiv %}
+
+{% block content %}
+    <div>
+       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4
+            shadow-sm">
+           <div class="col p-4 d-flex flex-column position-static">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Add Post</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-info">POST</button>
+                    </div>
+                </form>
+          </div>
+       </div>
+    </div>
+{% endblock content %}
+

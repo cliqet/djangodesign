@@ -1,0 +1,125 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+      <meta name="generator" content="Jekyll v4.0.1">
+      <title>Blog Template · Bootstrap</title>
+      <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+      <!-- Bootstrap core CSS -->
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <style>
+         .bd-placeholder-img {
+         font-size: 1.125rem;
+         text-anchor: middle;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+         }
+         @media (min-width: 768px) {
+         .bd-placeholder-img-lg {
+         font-size: 3.5rem;
+         }
+         }
+      </style>
+      <!-- Custom styles for this template -->
+      <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+
+   </head>
+   <body>
+      <div class="container">
+
+         <!--Navbar-->
+         <nav class="navbar navbar-dark bg-dark">
+           <!-- Navbar brand -->
+           <a class="navbar-brand blog-header-logo" href="{% url 'blogs_home' %}">Blog Title</a>
+
+           <!-- Collapse button -->
+           <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+             aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+                 class="fa fa-bars fa-1x"></i></span></button>
+
+           <!-- Collapsible content -->
+           <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+             <!-- Links -->
+             <ul class="navbar-nav mr-auto">
+                {% if request.user.is_authenticated %}
+                     <li class="nav-item py-2">
+                       <a href="{% url 'add_post' %}" class="text-white mr-2">Add Post</a>
+                     </li>
+                     <li class="nav-item py-2">
+                       <a href="{% url 'user_created_blog' %}" class="text-white mr-2">Blog List</a>
+                     </li>
+                     <li class="nav-item active py-2">
+                       <a href="{% url 'profile' %}" class="text-white mr-2">Profile</a>
+                     </li>
+                     <li class="nav-item py-2">
+                       <a href="{% url 'logout' %}" class="text-white mr-2">Logout</a>
+                     </li>
+                {% else %}
+                     <li class="nav-item py-2">
+                        <a class="text-white mr-2" href="{% url 'register' %}">Register</a>
+                     </li>
+                     <li class="nav-item py-2">
+                        <a class="text-white mr-2" href="{% url 'login' %}">Login</a>
+                     </li>
+                {% endif %}
+             </ul>
+             <!-- Links -->
+
+           </div>
+           <!-- Collapsible content -->
+
+         </nav>
+         <!--/.Navbar-->
+
+        <!-- Categories -->
+        {% block categorydiv %}{% endblock categorydiv %}
+
+         <div class="row"">
+           <div class="col-md-8">
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}">
+                      {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+              {% block content %}{% endblock content %}
+               {% block buttons %}{% endblock buttons %}
+           </div>
+           <div class="col-md-4">
+             {% block sidebar %}{% endblock sidebar %}
+           </div>
+         </div>
+
+
+      </div>
+
+
+
+      <!-- /.container -->
+      <footer class="blog-footer">
+         <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+         <p>
+            <a href="#">Back to top</a>
+         </p>
+      </footer>
+      <!-- Bootstrap core JavaScript -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+      <!-- Custom scripts for this template -->
+      <script src="{% static 'js/clean-blog.min.js' %}"></script>
+   </body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "blogs/base.html" %}
+
+{% block categorydiv %}
+    <div class="nav-scroller py-1 mb-2">
+        <a href="{{ request.META.HTTP_REFERER }}">Back</a>
+     </div>
+{% endblock categorydiv %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Post</legend>
+                <h3>Delete this post "{{ object.title }}?"</h3>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Delete</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+
